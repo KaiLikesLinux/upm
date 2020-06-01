@@ -1,0 +1,17 @@
+Source: upm
+Section: devel
+Priority: optional
+Maintainer: Kai Lyons <kai.lyons@kaix.live>
+Uploaders: Kai Lyons <kai.lyons@kaix.live>
+Build-Depends: debhelper-compat (= 12), 
+    software-properties-common, 
+    build-essential,
+    fakeroot,
+    devscripts,
+    dput
+Standards-Version: 4.5.0
+
+Package: upm
+Architecture: any
+Depends: ${misc:Depends}
+Description: Script to make installing PPA's and single applications fast
