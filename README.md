@@ -24,6 +24,7 @@ Available Options:
 ```
 
 # TODO
+- [ ] Polish Usage Info
 - [ ] Add package build scripts
 - [ ] Add package upload scripts
 
