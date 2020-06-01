@@ -1,0 +1,11 @@
+upm (1.0.1) focal; urgency=medium
+
+  * Add dput
+
+ -- Kai Lyons <kai.lyons@kaix.live>  Mon, 01 Jun 2020 04:10:00 -0600
+
+upm (1.0) focal; urgency=medium
+
+  * Created / Packaged Script
+
+ -- Kai Lyons <kai.lyons@kaix.live>  Mon, 01 Jun 2020 03:50:00 -0600
