@@ -1,0 +1,145 @@
+#!/bin/bash
+
+# Display Usage (if error or --help)
+function sudocheck () {
+    if [[ $EUID -ne 0 ]]; then
+        echo "This script must be run as root" 
+        exit 1
+    fi
+}
+
+function usage () {
+  echo "Usage: $0 [options] <values>"
+  echo
+  echo "Available Options:"
+  echo " -i --install : Install package"
+  echo "    Ex: $0 --install <package-name>"
+  echo " -r --remove : Remove package"
+  echo "    Ex: $0 --remove <package-name>"
+  echo " -ppa --add-ppa : Add ppa"
+  echo "    Ex: $0 --add-ppa <user> <ppa-name>"
+  echo " -rppa --remove-ppa : Remove PPA"
+  echo "    Ex: $0 --remove-ppa <user> <ppa-name>"
+  echo " --ppa-install : Install from ppa"
+  echo "    Ex: $0 --ppa-install <user> <ppa-name> <package-name>"
+  echo " -pdr --ppa-direct-remove"
+  echo "    Ex: $0 --ppa-direct-remove <user> <ppa-name> <package-name>"
+  echo " -b --build : Builds package with debuild"
+  echo "    Ex: $0 --build"
+  echo " -s --sbuild : Builds package with sbuild"
+  echo "    Ex: $0 --sbuild"
+  echo " -bs --build-source : Builds package with debuild -S"
+  echo "    Ex: $0 --build-source"
+  echo " -bu --build-upload : Builds package with debuild -S and uploads to launchpad"
+  echo "    Ex: $0 --build-upload <user> <ppa-name> <package-version>"
+  echo " -u --upload : Uploads to launchpad"
+  echo "    Ex: $0 --upload <user> <ppa-name> <package-version>"
+}
+
+# Functionality
+if [[ -z $1 ]]; then
+    usage
+else
+    if [[ $1 = "--help" || $1 = "-h" ]]; then
+        usage
+    elif [[ $1 = "-i" || $1 = "--install" ]]; then
+        if [[ $# -gt 2 || $# -lt 2 ]]; then
+            echo "Needs 2 arguments"
+            usage
+            exit 1
+        fi
+        sudocheck
+        apt-update
+        apt install $2 -y
+    elif [[ $1 = "-ppa" || $1 = "--add-ppa" ]]; then
+        if [[ $# -gt 3 || $# -lt 3 ]]; then
+            echo "Needs 3 arguments"
+            usage
+            exit 1
+        fi
+        sudocheck
+        add-apt-repository ppa:$2/$3
+        apt update
+    elif [[ $1 = "--ppa-install" ]]; then
+        if [[ $# -gt 4 || $# -lt 4 ]]; then
+            echo "Needs 4 arguments"
+            usage
+            exit 1
+        fi
+        sudocheck
+        add-apt-repository ppa:$2/$3
+        apt update
+        apt install $4
+    elif [[ $1 = "-r" || $1 = "--remove" ]]; then
+        if [[ $# -gt 2 || $# -lt 2 ]]; then
+            echo "Needs 2 arguments"
+            usage
+            exit 1
+        fi
+        sudocheck
+        apt remove $2
+        apt update
+    elif [[ $1 = "-rppa" || $1 = "--remove-ppa" ]]; then
+        if [[ $# -gt 3 || $# -lt 3 ]]; then
+            echo "Needs 3 arguments"
+            usage
+            exit 1
+        fi
+        sudocheck
+        add-apt-repository --remove ppa:$2/$3
+    elif [[ $1 = "-pdr" || $1 = "--ppa-direct-remove" ]]; then
+        if [[ $# -gt 4 || $# -lt 4 ]]; then
+            echo "Needs 4 arguments"
+            usage
+            exit 1
+        fi
+        sudocheck
+        apt remove $4
+        add-apt-repository --remove ppa:$2/$3
+        apt update
+    elif [[ $1 = "-b" || $1 = "--build" ]]; then
+        if [[ $# -gt 1 || $# -lt 1 ]]; then
+            echo "Needs 1 argument"
+            usage
+            exit 1
+        fi
+        debuild
+    elif [[ $1 = "-bs" || $1="--build-source" ]]; then
+        if [[ $# -gt 1 || $# -lt 1 ]]; then
+            echo "Needs 1 argument"
+            usage
+            exit 1
+        fi
+        debuild -S
+    elif [[ $1 = "-s" || $1 = "--sbuild" ]]; then
+        if [[ $# -gt 1 || $# -lt 1 ]]; then
+            echo "Needs 1 argument"
+            usage
+            exit 1
+        fi
+        sbuild
+    elif [[ $1 = "-u" || $1 = "--upload" ]]; then
+        if [[ $# -gt 4 || $# -lt 4 ]]; then
+            echo "Needs 4 arguments"
+            usage
+            exit 1
+        fi
+        dput ppa:$2/$3 *$4_source.changes
+    elif [[ $1 = "-bu" || $1 = "--build-upload" ]]; then
+        if [[ $# -gt 4 || $# -lt 4 ]]; then
+            echo "Needs 4 arguments"
+            usage
+            exit 1
+        fi
+        debuild -S
+        cd ..
+        dput ppa:$2/$3 *$4_source.changes
+    else
+        if [[ -z $1 ]]; then
+            usage
+        else
+            echo "Invalid Argument:"
+            usage
+        fi
+    fi
+fi
