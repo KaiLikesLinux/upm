@@ -6,12 +6,12 @@ A package manager designed specifically for Ubuntu. \
 `null`
 
 # TODO
-- [ ] Install packages
-- [ ] Add PPA's
-- [ ] Install directly from PPA
-- [ ] Remove packages
-- [ ] Remove PPA's
-- [ ] Add Custom Sources (non-ppa)
+- [ ] Polish functionality
+- [ ] Add to `Usage of UPM`
 
 # DONE
-`null`
+- [x] Install packages
+- [x] Add PPA's
+- [x] Install directly from PPA
+- [x] Remove packages
+- [x] Remove PPA's

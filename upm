@@ -29,5 +29,26 @@ function usage () {
 if [[ -z $1 ]]; then
     usage
 else
-    echo "good!"
+    if [[ $1 = "--help" || $1 = "-h" ]]; then
+        usage
+    elif [[ $1 = "-i" || $1 = "--install" ]]; then
+        apt-update
+        apt install $2 -y
+    elif [[ $1 = "-ppa" || $1 = "--add-ppa" ]]; then
+        add-apt-repository ppa:$2/$3
+        apt update
+    elif [[ $1 = "--ppa-install" ]]; then
+        add-apt-repository ppa:$2/$3
+        apt update
+        apt install $4
+    elif [[ $1 = "-r" || $1 = "--remove" ]]; then
+        apt remove $2
+        apt update
+    elif [[ $1 = "-rppa" || $1 = "--remove-ppa" ]]; then
+        add-apt-repository --remove ppa:$2/$3
+    elif [[ $1 = "-pdr" || $1 = "--ppa-direct-remove" ]]; then
+        apt remove $4
+        add-apt-repository --remove ppa:$2/$3
+        apt update
+    fi
 fi
