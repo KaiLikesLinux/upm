@@ -17,7 +17,7 @@ Usage: `./upm [options] <values>`
 | --sbuild | -s | 0 | null |
 | --build-source | -bs | 3 | User/PPA Name/Package Version |
 | --build-upload | -bu | 3 | User/PPA Name/Package Version |
-| --upload | -u | 3 | | User/PPA Name/Package Version |
+| --upload | -u | 3 | User/PPA Name/Package Version |
 
 ## Option Descriptions
 | Option | Description |
