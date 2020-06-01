@@ -6,7 +6,6 @@ A package manager designed specifically for Ubuntu. \
 `null`
 
 # TODO
-- [ ] Polish functionality
 - [ ] Add to `Usage of UPM`
 - [ ] Add package build scripts
 - [ ] Add package upload scripts
@@ -17,3 +16,4 @@ A package manager designed specifically for Ubuntu. \
 - [x] Install directly from PPA
 - [x] Remove packages
 - [x] Remove PPA's
+- [x] Polish functionality
