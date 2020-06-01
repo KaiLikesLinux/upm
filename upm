@@ -80,6 +80,43 @@ else
         apt remove $4
         add-apt-repository --remove ppa:$2/$3
         apt update
+    elif [[ $1 = "-b" || $1 = "--build" ]]; then
+        if [[ $# -gt 1 || $# -lt 1 ]]; then
+            echo "Needs 1 argument"
+            usage
+            exit 1
+        fi
+        debuild
+    elif [[ $1 = "-bs" || $1="--build-source" ]]; then
+        if [[ $# -gt 1 || $# -lt 1 ]]; then
+            echo "Needs 1 argument"
+            usage
+            exit 1
+        fi
+        debuild -S
+    elif [[ $1 = "-sb" || $1 = "--sbuild" ]]; then
+        if [[ $# -gt 1 || $# -lt 1 ]]; then
+            echo "Needs 1 argument"
+            usage
+            exit 1
+        fi
+        sbuild
+    elif [[ $1 = "-u" || $1 = "--upload" ]]; then
+        if [[ $# -gt 4 || $# -lt 4 ]]; then
+            echo "Needs 4 arguments"
+            usage
+            exit 1
+        fi
+        dput ppa:$2/$3 *$4_source.changes
+    elif [[ $1 = "-bu" || $1 = "--build-upload" ]]; then
+        if [[ $# -gt 4 || $# -lt 4 ]]; then
+            echo "Needs 4 arguments"
+            usage
+            exit 1
+        fi
+        debuild -S
+        cd ..
+        dput ppa:$2/$3 *$4_source.changes
     else
         if [[ -z $1 ]]; then
             usage
