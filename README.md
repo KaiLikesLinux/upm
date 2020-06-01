@@ -33,7 +33,7 @@ Available Options:
 
 # TODO
 - [ ] Polish Usage Info
-- [ ] Polish scripts
+
 
 # DONE
 - [x] Install packages
@@ -54,3 +54,4 @@ Available Options:
 - [x] Add Installation File
 - [x] Add remove script in `install.sh`
 - [x] Polish sudo needs
+- [x] Polish scripts
