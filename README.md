@@ -62,7 +62,11 @@ Usage: `./upm [options] <values>`
 - [ ] Make script smaller
 - [ ] Allow multiple packages
 - [ ] Make GUI implementation
-
+- [ ] Add more package managers
+  - [ ] Snapcraft
+  - [ ] AUR
+  - [ ] Packman
+  - [ ] Flatpack
 # DONE
 - [x] Install packages
 - [x] Add PPA's
