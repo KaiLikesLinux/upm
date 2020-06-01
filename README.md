@@ -34,7 +34,6 @@ Available Options:
 # TODO
 - [ ] Polish Usage Info
 - [ ] Polish sudo needs
-- [ ] Add remove script in `install.sh`
 
 # DONE
 - [x] Install packages
@@ -53,3 +52,4 @@ Available Options:
   - [x] debuild -S && dput
 - [x] Add Usage info for new scripts
 - [x] Add Installation File
+- [x] Add remove script in `install.sh`
