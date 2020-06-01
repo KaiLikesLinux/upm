@@ -37,6 +37,7 @@ Usage: `./upm [options] <values>`
 
 # TODO
 - [ ] Make script smaller
+- [ ] Make Debian Files
 
 # DONE
 - [x] Install packages
