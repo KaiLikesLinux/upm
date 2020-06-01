@@ -27,6 +27,7 @@ Available Options:
 - [ ] Polish Usage Info
 - [ ] Add package build scripts
 - [ ] Add package upload scripts
+- [ ] Add Makefile
 
 # DONE
 - [x] Install packages
