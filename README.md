@@ -24,14 +24,8 @@ Available Options:
 
 # TODO
 - [ ] Polish Usage Info
-- [ ] Add package build scripts
-  - [ ] debuild
-  - [ ] debuild -S
-  - [ ] sbuild
-- [ ] Add package upload scripts
-  - [ ] dput
-  - [ ] debuild -S && dput
 - [ ] Add Makefile
+- [ ] Add Usage info for new scripts
 
 # DONE
 - [x] Install packages
@@ -41,3 +35,10 @@ Available Options:
 - [x] Remove PPA's
 - [x] Polish functionality
 - [x] Add to `Usage of UPM`
+- [x] Add package build scripts
+  - [x] debuild
+  - [x] debuild -S
+  - [x] sbuild
+- [x] Add package upload scripts
+  - [x] dput
+  - [x] debuild -S && dput
