@@ -1,6 +1,5 @@
-# Ubuntu Package Manager
-A package manager designed specifically for Ubuntu. \
-`Ubuntu is a trade mark of Canonical LTD`
+# Ultra Package Manager
+A package manager designed specifically for Ubuntu.
 
 # Usage of UPM:
 ```
