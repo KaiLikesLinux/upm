@@ -32,7 +32,8 @@ Available Options:
 
 # TODO
 - [ ] Polish Usage Info
-- [ ] Add Makefile
+- [ ] Polish sudo needs
+- [ ] Add Installation File
 
 # DONE
 - [x] Install packages
