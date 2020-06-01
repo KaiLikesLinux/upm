@@ -1,6 +1,7 @@
 # Ultra Package Manager
 A package manager designed specifically for Ubuntu.
 `install: sudo ./install.sh`
+
 # Usage of UPM:
 ```
 Usage: ./upm [options] <values>
@@ -33,6 +34,7 @@ Available Options:
 # TODO
 - [ ] Polish Usage Info
 - [ ] Polish sudo needs
+- [ ] Add remove script in `install.sh`
 
 # DONE
 - [x] Install packages
