@@ -3,37 +3,40 @@ A package manager designed specifically for Ubuntu.
 `install: sudo ./install.sh`
 
 # Usage of UPM:
-```
-Usage: ./upm [options] <values>
+Usage: `./upm [options] <values>`
 
-Available Options:
- -i --install : Install package
-    Ex: ./upm --install <package-name>
- -ppa --add-ppa : Add ppa
-    Ex: ./upm --add-ppa <user> <ppa-name>
- --ppa-install : Install from ppa
-    Ex: ./upm --ppa-install <user> <ppa-name> <package-name>
- -r --remove : Remove package
-    Ex: ./upm --remove <package-name>
- -rppa --remove-ppa : Remove PPA
-    Ex: ./upm --remove-ppa <user> <ppa-name>
- -pdr --ppa-direct-remove
-    Ex: ./upm --ppa-direct-remove <user> <ppa-name> <package-name>
- -b --build : Builds package with debuild
-    Ex: ./upm --build
- -s --sbuild : Builds package with sbuild
-    Ex: ./upm --sbuild
- -bs --build-source : Builds package with debuild -S
-    Ex: ./upm --build-source
- -bu --build-upload : Builds package with debuild -S and uploads to launchpad
-    Ex: ./upm --build-upload <user> <ppa-name> <package-version>
- -u --upload : Uploads to launchpad
-    Ex: ./upm --upload <user> <ppa-name> <package-version>
-```
+| Option    | Shorthand | Value Count | Value Type   |
+| --------- | --------- | ----------- | ------------ |
+| --install | -i        | 1           | Package Name |
+| --remove  | -r        | 1           | Package Name |
+| --add-ppa | -ppa      | 2           | User/PPA Name |
+| --remove-ppa | -rppa | 2 | User/PPA Name |
+| --ppa-install | null  | 3 | User/PPA Name/Package Name |
+| --ppa-direct-remove | -pdr | 3 | User/PPA Name/Package Name |
+| --build | -b | 0 | null |
+| --sbuild | -s | 0 | null |
+| --build-source | -bs | 3 | User/PPA Name/Package Version |
+| --build-upload | -bu | 3 | User/PPA Name/Package Version |
+| --upload | -u | 3 | | User/PPA Name/Package Version |
+
+## Option Descriptions
+| Option | Description |
+| --- | --- |
+| --install | Installs package |
+| --remove | Removes package |
+| --add-ppa | Adds launchpad ppa |
+| --remove-ppa | Removes ppa |
+| --ppa-install | Adds ppa and installs package |
+| --ppa-direct-remove | Removes ppa and removes package |
+| --build | Builds package with debuild |
+| --sbuild | Builds package with sbuild |
+| --build-source | Builds package with debuild -S|
+| --build-upload | Builds with debuild -S and uploads to launchpad |
+| --build-upload | Uploads to Launchpad |
+
 
 # TODO
-- [ ] Polish Usage Info
-
+- [ ] Organize Usage Info in Script
 
 # DONE
 - [x] Install packages
@@ -55,3 +58,4 @@ Available Options:
 - [x] Add remove script in `install.sh`
 - [x] Polish sudo needs
 - [x] Polish scripts
+- [x] Polish Usage Info
