@@ -8,6 +8,7 @@ software-properties-common,
 build-essential,
 fakeroot,
 devscripts
+dput
 ```
 
 From GitHub: \
