@@ -10,8 +10,8 @@ Usage: `./upm [options] <values>`
 | --install | -i        | 1           | Package Name |
 | --remove  | -r        | 1           | Package Name |
 | --add-ppa | -ppa      | 2           | User/PPA Name |
-| --remove-ppa | -rppa | 2 | User/PPA Name |
-| --ppa-install | null  | 3 | User/PPA Name/Package Name |
+| --remove-ppa | -rppa | 2 | User/PPA Name |S
+| --ppa-install |  | 3 | User/PPA Name/Package Name |
 | --ppa-direct-remove | -pdr | 3 | User/PPA Name/Package Name |
 | --build | -b | 0 | null |
 | --sbuild | -s | 0 | null |
