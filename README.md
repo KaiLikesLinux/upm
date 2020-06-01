@@ -11,7 +11,7 @@ devscripts
 dput
 ```
 
-From GitHub: \
+From GitHub:
 ```
 git clone https://github.com/kailikeslinux/upm
 cd upm
