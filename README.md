@@ -59,7 +59,6 @@ Usage: `./upm [options] <values>`
 
 # TODO
 - [ ] Make script smaller
-- [ ] Make Debian Files
 
 # DONE
 - [x] Install packages
@@ -83,3 +82,4 @@ Usage: `./upm [options] <values>`
 - [x] Polish scripts
 - [x] Polish Usage Info
 - [x] Organize Usage Info in Script
+- [x] Make Debian Files
