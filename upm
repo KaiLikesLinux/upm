@@ -8,6 +8,14 @@ function sudocheck () {
     fi
 }
 
+argcount () {
+    if [[ $# -gt $1 || $# -lt $1 ]]; then
+        echo "Needs $1 arguments"
+        usage
+        exit 1
+    fi
+}
+
 function usage () {
   echo "Usage: $0 [options] <values>"
   echo
@@ -43,94 +51,50 @@ else
     if [[ $1 = "--help" || $1 = "-h" ]]; then
         usage
     elif [[ $1 = "-i" || $1 = "--install" ]]; then
-        if [[ $# -gt 2 || $# -lt 2 ]]; then
-            echo "Needs 2 arguments"
-            usage
-            exit 1
-        fi
+        argcount 2
         sudocheck
         apt-update
         apt install $2 -y
     elif [[ $1 = "-ppa" || $1 = "--add-ppa" ]]; then
-        if [[ $# -gt 3 || $# -lt 3 ]]; then
-            echo "Needs 3 arguments"
-            usage
-            exit 1
-        fi
+        argcount 3
         sudocheck
         add-apt-repository ppa:$2/$3
         apt update
     elif [[ $1 = "--ppa-install" ]]; then
-        if [[ $# -gt 4 || $# -lt 4 ]]; then
-            echo "Needs 4 arguments"
-            usage
-            exit 1
-        fi
+        argcount 4
         sudocheck
         add-apt-repository ppa:$2/$3
         apt update
         apt install $4
     elif [[ $1 = "-r" || $1 = "--remove" ]]; then
-        if [[ $# -gt 2 || $# -lt 2 ]]; then
-            echo "Needs 2 arguments"
-            usage
-            exit 1
-        fi
+        argcount 2
         sudocheck
         apt remove $2
         apt update
     elif [[ $1 = "-rppa" || $1 = "--remove-ppa" ]]; then
-        if [[ $# -gt 3 || $# -lt 3 ]]; then
-            echo "Needs 3 arguments"
-            usage
-            exit 1
-        fi
+        argcount 3
         sudocheck
         add-apt-repository --remove ppa:$2/$3
     elif [[ $1 = "-pdr" || $1 = "--ppa-direct-remove" ]]; then
-        if [[ $# -gt 4 || $# -lt 4 ]]; then
-            echo "Needs 4 arguments"
-            usage
-            exit 1
-        fi
+        argcount 4
         sudocheck
         apt remove $4
         add-apt-repository --remove ppa:$2/$3
         apt update
     elif [[ $1 = "-b" || $1 = "--build" ]]; then
-        if [[ $# -gt 1 || $# -lt 1 ]]; then
-            echo "Needs 1 argument"
-            usage
-            exit 1
-        fi
+        argcount 1
         debuild
     elif [[ $1 = "-bs" || $1="--build-source" ]]; then
-        if [[ $# -gt 1 || $# -lt 1 ]]; then
-            echo "Needs 1 argument"
-            usage
-            exit 1
-        fi
+        argcount 1
         debuild -S
     elif [[ $1 = "-s" || $1 = "--sbuild" ]]; then
-        if [[ $# -gt 1 || $# -lt 1 ]]; then
-            echo "Needs 1 argument"
-            usage
-            exit 1
-        fi
+        argcount 1
         sbuild
     elif [[ $1 = "-u" || $1 = "--upload" ]]; then
-        if [[ $# -gt 4 || $# -lt 4 ]]; then
-            echo "Needs 4 arguments"
-            usage
-            exit 1
-        fi
+        argcount 4
         dput ppa:$2/$3 *$4_source.changes
     elif [[ $1 = "-bu" || $1 = "--build-upload" ]]; then
-        if [[ $# -gt 4 || $# -lt 4 ]]; then
-            echo "Needs 4 arguments"
-            usage
-            exit 1
-        fi
+        argcount 4
         debuild -S
         cd ..
         dput ppa:$2/$3 *$4_source.changes
