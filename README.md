@@ -25,7 +25,12 @@ Available Options:
 # TODO
 - [ ] Polish Usage Info
 - [ ] Add package build scripts
+  - [ ] debuild
+  - [ ] debuild -S
+  - [ ] sbuild
 - [ ] Add package upload scripts
+  - [ ] dput
+  - [ ] debuild -S && dput
 - [ ] Add Makefile
 
 # DONE
