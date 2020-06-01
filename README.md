@@ -36,7 +36,7 @@ Usage: `./upm [options] <values>`
 
 
 # TODO
-- [ ] Organize Usage Info in Script
+- [ ] Make script smaller
 
 # DONE
 - [x] Install packages
@@ -59,3 +59,4 @@ Usage: `./upm [options] <values>`
 - [x] Polish sudo needs
 - [x] Polish scripts
 - [x] Polish Usage Info
+- [x] Organize Usage Info in Script
