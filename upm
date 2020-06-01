@@ -1,6 +1,13 @@
 #!/bin/bash
 
 # Display Usage (if error or --help)
+function sudocheck () {
+    if [[ $EUID -ne 0 ]]; then
+        echo "This script must be run as root" 
+        exit 1
+    fi
+}
+
 function usage () {
   echo "Usage: $0 [options] <values>"
   echo
@@ -41,10 +48,7 @@ else
             usage
             exit 1
         fi
-        if [[ $EUID -ne 0 ]]; then
-            echo "This script must be run as root" 
-            exit 1
-        fi
+        sudocheck
         apt-update
         apt install $2 -y
     elif [[ $1 = "-ppa" || $1 = "--add-ppa" ]]; then
@@ -53,10 +57,7 @@ else
             usage
             exit 1
         fi
-        if [[ $EUID -ne 0 ]]; then
-            echo "This script must be run as root" 
-            exit 1
-        fi
+        sudocheck
         add-apt-repository ppa:$2/$3
         apt update
     elif [[ $1 = "--ppa-install" ]]; then
@@ -65,10 +66,7 @@ else
             usage
             exit 1
         fi
-        if [[ $EUID -ne 0 ]]; then
-            echo "This script must be run as root" 
-            exit 1
-        fi
+        sudocheck
         add-apt-repository ppa:$2/$3
         apt update
         apt install $4
@@ -78,10 +76,7 @@ else
             usage
             exit 1
         fi
-        if [[ $EUID -ne 0 ]]; then
-            echo "This script must be run as root" 
-            exit 1
-        fi
+        sudocheck
         apt remove $2
         apt update
     elif [[ $1 = "-rppa" || $1 = "--remove-ppa" ]]; then
@@ -90,6 +85,7 @@ else
             usage
             exit 1
         fi
+        sudocheck
         add-apt-repository --remove ppa:$2/$3
     elif [[ $1 = "-pdr" || $1 = "--ppa-direct-remove" ]]; then
         if [[ $# -gt 4 || $# -lt 4 ]]; then
@@ -97,10 +93,7 @@ else
             usage
             exit 1
         fi
-        if [[ $EUID -ne 0 ]]; then
-            echo "This script must be run as root" 
-            exit 1
-        fi
+        sudocheck
         apt remove $4
         add-apt-repository --remove ppa:$2/$3
         apt update
