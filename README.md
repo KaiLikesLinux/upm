@@ -61,6 +61,7 @@ Usage: `./upm [options] <values>`
 # TODO
 - [ ] Make script smaller
 - [ ] Allow multiple packages
+- [ ] Make GUI implementation
 
 # DONE
 - [x] Install packages
