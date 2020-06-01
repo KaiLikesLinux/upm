@@ -1,0 +1,33 @@
+#!/bin/bash
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
+
+# Display Usage (if error or --help)
+function usage () {
+  echo "Usage: $0 [options] <values>"
+  echo
+  echo "Available Options:"
+  echo " -i --install : Install package"
+  echo "    Ex: $0 --install <package-name>"
+  echo " -ppa --add-ppa : Add ppa"
+  echo "    Ex: $0 --add-ppa <user> <ppa-name>" 
+  echo " --ppa-install : Install from ppa"
+  echo "    Ex: $0 --ppa-install <user> <ppa-name> <package-name>"
+  echo " -r --remove : Remove package"
+  echo "    Ex: $0 --remove <package-name>"
+  echo " -rppa --remove-ppa : Remove PPA"
+  echo "    Ex: $0 --remove-ppa <user> <ppa-name>"
+  echo " -pdr --ppa-direct-remove"
+  echo "    Ex: $0 --ppa-direct-remove <user> <ppa-name> <package-name>"
+  echo " -src --add-custom-source : Adds Custom Package URL"
+  echo "    Ex: $0 --add-custom-source <url>"
+}
+
+# Functionality
+if [[ -z $1 ]]; then
+    usage
+else
+    echo "good!"
+fi
