@@ -1,6 +1,28 @@
 # Ultra Package Manager
 A package manager designed specifically for Ubuntu.
-`install: sudo ./install.sh`
+
+# Install UPM:
+Depends:
+```
+software-properties-common, 
+build-essential,
+fakeroot,
+devscripts
+```
+
+From GitHub: \
+```
+git clone https://github.com/kailikeslinux/upm
+cd upm
+./install.sh
+```
+
+From PPA:
+```
+sudo add-apt-repository ppa:kailikeslinux/upm
+sudo apt update
+sudo apt install upm
+```
 
 # Usage of UPM:
 Usage: `./upm [options] <values>`
