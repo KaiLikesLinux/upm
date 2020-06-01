@@ -21,8 +21,16 @@ function usage () {
   echo "    Ex: $0 --remove-ppa <user> <ppa-name>"
   echo " -pdr --ppa-direct-remove"
   echo "    Ex: $0 --ppa-direct-remove <user> <ppa-name> <package-name>"
-  echo " -src --add-custom-source : Adds Custom Package URL"
-  echo "    Ex: $0 --add-custom-source <url>"
+  echo " -b --build : Builds package with debuild"
+  echo "    Ex: $0 --build"
+  echo " -s --sbuild : Builds package with sbuild"
+  echo "    Ex: $0 --sbuild"
+  echo " -bs --build-source : Builds package with debuild -S"
+  echo "    Ex: $0 --build-source"
+  echo " -bu --build-upload : Builds package with debuild -S and uploads to launchpad"
+  echo "    Ex: $0 --build-upload <user> <ppa-name> <package-version>"
+  echo " -u --upload : Uploads to launchpad"
+  echo "    Ex: $0 --upload <user> <ppa-name> <package-version>"
 }
 
 # Functionality
@@ -94,7 +102,7 @@ else
             exit 1
         fi
         debuild -S
-    elif [[ $1 = "-sb" || $1 = "--sbuild" ]]; then
+    elif [[ $1 = "-s" || $1 = "--sbuild" ]]; then
         if [[ $# -gt 1 || $# -lt 1 ]]; then
             echo "Needs 1 argument"
             usage

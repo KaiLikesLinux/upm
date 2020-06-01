@@ -18,14 +18,21 @@ Available Options:
     Ex: ./upm --remove-ppa <user> <ppa-name>
  -pdr --ppa-direct-remove
     Ex: ./upm --ppa-direct-remove <user> <ppa-name> <package-name>
- -src --add-custom-source : Adds Custom Package URL
-    Ex: ./upm --add-custom-source <url>
+ -b --build : Builds package with debuild
+    Ex: ./upm --build
+ -s --sbuild : Builds package with sbuild
+    Ex: ./upm --sbuild
+ -bs --build-source : Builds package with debuild -S
+    Ex: ./upm --build-source
+ -bu --build-upload : Builds package with debuild -S and uploads to launchpad
+    Ex: ./upm --build-upload <user> <ppa-name> <package-version>
+ -u --upload : Uploads to launchpad
+    Ex: ./upm --upload <user> <ppa-name> <package-version>
 ```
 
 # TODO
 - [ ] Polish Usage Info
 - [ ] Add Makefile
-- [ ] Add Usage info for new scripts
 
 # DONE
 - [x] Install packages
@@ -42,3 +49,4 @@ Available Options:
 - [x] Add package upload scripts
   - [x] dput
   - [x] debuild -S && dput
+- [x] Add Usage info for new scripts
