@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Display Usage (if error or --help)
+# Check if SUDO
 function sudocheck () {
     if [[ $EUID -ne 0 ]]; then
         echo "This script must be run as root" 
@@ -8,6 +8,7 @@ function sudocheck () {
     fi
 }
 
+# Check argument count
 argcount () {
     if [[ $# -gt $1 || $# -lt $1 ]]; then
         echo "Needs $1 arguments"
@@ -16,6 +17,7 @@ argcount () {
     fi
 }
 
+# Display help
 function usage () {
   echo "Usage: $0 [options] <values>"
   echo
@@ -45,59 +47,74 @@ function usage () {
 }
 
 # Functionality
+## if there are no extra arguments from command
+## display usage
 if [[ -z $1 ]]; then
     usage
 else
+    # Help command
     if [[ $1 = "--help" || $1 = "-h" ]]; then
         usage
+    # Install package command
     elif [[ $1 = "-i" || $1 = "--install" ]]; then
         argcount 2
         sudocheck
         apt-update
         apt install $2 -y
+    # Add PPA command
     elif [[ $1 = "-ppa" || $1 = "--add-ppa" ]]; then
         argcount 3
         sudocheck
         add-apt-repository ppa:$2/$3
         apt update
+    # Add PPA and install package
     elif [[ $1 = "--ppa-install" ]]; then
         argcount 4
         sudocheck
         add-apt-repository ppa:$2/$3
         apt update
         apt install $4
+    # Remove package
     elif [[ $1 = "-r" || $1 = "--remove" ]]; then
         argcount 2
         sudocheck
         apt remove $2
         apt update
+    # Remove PPA
     elif [[ $1 = "-rppa" || $1 = "--remove-ppa" ]]; then
         argcount 3
         sudocheck
         add-apt-repository --remove ppa:$2/$3
+    # Remove package and PPA
     elif [[ $1 = "-pdr" || $1 = "--ppa-direct-remove" ]]; then
         argcount 4
         sudocheck
         apt remove $4
         add-apt-repository --remove ppa:$2/$3
         apt update
+    # Debuild
     elif [[ $1 = "-b" || $1 = "--build" ]]; then
         argcount 1
         debuild
+    # Debuild -S
     elif [[ $1 = "-bs" || $1="--build-source" ]]; then
         argcount 1
         debuild -S
+    # Sbuild
     elif [[ $1 = "-s" || $1 = "--sbuild" ]]; then
         argcount 1
         sbuild
+    # Upload package
     elif [[ $1 = "-u" || $1 = "--upload" ]]; then
         argcount 4
         dput ppa:$2/$3 *$4_source.changes
+    # Build Source and Upload package
     elif [[ $1 = "-bu" || $1 = "--build-upload" ]]; then
         argcount 4
         debuild -S
         cd ..
         dput ppa:$2/$3 *$4_source.changes
+    # For unknown commands
     else
         if [[ -z $1 ]]; then
             usage
