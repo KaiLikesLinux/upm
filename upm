@@ -1,8 +1,4 @@
 #!/bin/bash
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
-   exit 1
-fi
 
 # Display Usage (if error or --help)
 function usage () {
@@ -45,12 +41,20 @@ else
             usage
             exit 1
         fi
+        if [[ $EUID -ne 0 ]]; then
+            echo "This script must be run as root" 
+            exit 1
+        fi
         apt-update
         apt install $2 -y
     elif [[ $1 = "-ppa" || $1 = "--add-ppa" ]]; then
         if [[ $# -gt 3 || $# -lt 3 ]]; then
             echo "Needs 3 arguments"
             usage
+            exit 1
+        fi
+        if [[ $EUID -ne 0 ]]; then
+            echo "This script must be run as root" 
             exit 1
         fi
         add-apt-repository ppa:$2/$3
@@ -61,6 +65,10 @@ else
             usage
             exit 1
         fi
+        if [[ $EUID -ne 0 ]]; then
+            echo "This script must be run as root" 
+            exit 1
+        fi
         add-apt-repository ppa:$2/$3
         apt update
         apt install $4
@@ -68,6 +76,10 @@ else
         if [[ $# -gt 2 || $# -lt 2 ]]; then
             echo "Needs 2 arguments"
             usage
+            exit 1
+        fi
+        if [[ $EUID -ne 0 ]]; then
+            echo "This script must be run as root" 
             exit 1
         fi
         apt remove $2
@@ -83,6 +95,10 @@ else
         if [[ $# -gt 4 || $# -lt 4 ]]; then
             echo "Needs 4 arguments"
             usage
+            exit 1
+        fi
+        if [[ $EUID -ne 0 ]]; then
+            echo "This script must be run as root" 
             exit 1
         fi
         apt remove $4
