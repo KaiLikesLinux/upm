@@ -8,6 +8,8 @@ A package manager designed specifically for Ubuntu. \
 # TODO
 - [ ] Polish functionality
 - [ ] Add to `Usage of UPM`
+- [ ] Add package build scripts
+- [ ] Add package upload scripts
 
 # DONE
 - [x] Install packages
