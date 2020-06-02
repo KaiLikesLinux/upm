@@ -67,7 +67,7 @@ Usage: `./upm [options] <values>`
 - [ ] Add more package managers
   - [x] Snapcraft
   - [ ] AUR
-  - [ ] Packman
+  - [ ] Pacman
   - [ ] Flatpack
 - [ ] Snapcraft Channel Options
 
