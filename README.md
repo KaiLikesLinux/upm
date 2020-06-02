@@ -7,8 +7,9 @@ Depends:
 software-properties-common, 
 build-essential,
 fakeroot,
-devscripts
-dput
+devscripts,
+dput,
+snap
 ```
 
 From GitHub:
@@ -32,6 +33,7 @@ Usage: `./upm [options] <values>`
 | --------- | --------- | ----------- | ------------ |
 | --install | -i        | 1           | Package Name |
 | --remove  | -r        | 1           | Package Name |
+| --install-snap  | -snap | 1           | Package Name |
 | --add-ppa | -ppa      | 2           | User/PPA Name |
 | --remove-ppa | -rppa | 2 | User/PPA Name |S
 | --ppa-install |  | 3 | User/PPA Name/Package Name |
@@ -63,10 +65,12 @@ Usage: `./upm [options] <values>`
 - [ ] Allow multiple packages
 - [ ] Make GUI implementation
 - [ ] Add more package managers
-  - [ ] Snapcraft
+  - [x] Snapcraft
   - [ ] AUR
   - [ ] Packman
   - [ ] Flatpack
+- [ ] Snapcraft Channel Options
+
 # DONE
 - [x] Install packages
 - [x] Add PPA's

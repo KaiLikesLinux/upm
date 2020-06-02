@@ -26,6 +26,8 @@ function usage () {
   echo "    Ex: $0 --install <package-name>"
   echo " -r --remove : Remove package"
   echo "    Ex: $0 --remove <package-name>"
+  echo " -snap --install-snap : Install package from Snapcraft"
+  echo "    Ex $0 --install-snap <package-name>"
   echo " -ppa --add-ppa : Add ppa"
   echo "    Ex: $0 --add-ppa <user> <ppa-name>"
   echo " -rppa --remove-ppa : Remove PPA"
@@ -125,6 +127,10 @@ else
         debuild -S
         cd ..
         dput ppa:$2/$3 *$4_source.changes
+        exit 1
+    elif [[ $1 = "-snap" || $1 = "--install-snap" ]]; then
+        argcount 2
+        snap install $2 --classic
         exit 1
     # For unknown commands
     else
