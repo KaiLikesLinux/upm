@@ -25,6 +25,7 @@ sudo add-apt-repository ppa:kailikeslinux/upm
 sudo apt update
 sudo apt install upm
 ```
+> Note the PPA might be behind the Git Repo in both fixes and features
 
 # Usage of UPM:
 Usage: `./upm [options] <values>`
