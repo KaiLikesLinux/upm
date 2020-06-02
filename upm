@@ -55,18 +55,21 @@ else
     # Help command
     if [[ $1 = "--help" || $1 = "-h" ]]; then
         usage
+        exit 1
     # Install package command
     elif [[ $1 = "-i" || $1 = "--install" ]]; then
         argcount 2
         sudocheck
         apt-update
         apt install $2 -y
+        exit 1
     # Add PPA command
     elif [[ $1 = "-ppa" || $1 = "--add-ppa" ]]; then
         argcount 3
         sudocheck
         add-apt-repository ppa:$2/$3
         apt update
+        exit 1
     # Add PPA and install package
     elif [[ $1 = "--ppa-install" ]]; then
         argcount 4
@@ -74,17 +77,21 @@ else
         add-apt-repository ppa:$2/$3
         apt update
         apt install $4
+        exit 1
     # Remove package
     elif [[ $1 = "-r" || $1 = "--remove" ]]; then
         argcount 2
         sudocheck
         apt remove $2
         apt update
+        exit 1
     # Remove PPA
     elif [[ $1 = "-rppa" || $1 = "--remove-ppa" ]]; then
         argcount 3
         sudocheck
         add-apt-repository --remove ppa:$2/$3
+        apt update
+        exit 1
     # Remove package and PPA
     elif [[ $1 = "-pdr" || $1 = "--ppa-direct-remove" ]]; then
         argcount 4
@@ -92,18 +99,22 @@ else
         apt remove $4
         add-apt-repository --remove ppa:$2/$3
         apt update
+        exit 1
     # Debuild
     elif [[ $1 = "-b" || $1 = "--build" ]]; then
         argcount 1
         debuild
+        exit 1
     # Debuild -S
-    elif [[ $1 = "-bs" || $1="--build-source" ]]; then
+    elif [[ $1 = "-bs" || $1 = "--build-source" ]]; then
         argcount 1
         debuild -S
+        exit 1
     # Sbuild
     elif [[ $1 = "-s" || $1 = "--sbuild" ]]; then
         argcount 1
         sbuild
+        exit 1
     # Upload package
     elif [[ $1 = "-u" || $1 = "--upload" ]]; then
         argcount 4
@@ -114,13 +125,16 @@ else
         debuild -S
         cd ..
         dput ppa:$2/$3 *$4_source.changes
+        exit 1
     # For unknown commands
     else
         if [[ -z $1 ]]; then
             usage
+            exit 1
         else
             echo "Invalid Argument:"
             usage
+            exit 1
         fi
     fi
 fi
